@@ -9,7 +9,12 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $tenantsId = session('tenant_id');
+
+        $posts = Post::with('user')
+                    ->where('tenant_id', $tenantsId)
+                    ->get();
+
         return view('posts.index', compact('posts'));
     }
 
@@ -21,7 +26,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = new Post([
-            'content' => $request->input('content')
+            'content' => $request->input('content'),
+            'user_id' => $request->user()->id,
+            'tenant_id' => session('tenant_id')
         ]);
         $post->save();
 
@@ -55,5 +62,12 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index');
+    }
+
+    public function updateTenant(Request $request)
+    {
+        session(['tenant_id' => $request->input('tenant_id')]);
+
+        return redirect(route('posts.index'));
     }
 }
