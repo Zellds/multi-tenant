@@ -1,0 +1,22 @@
+version: '4'
+
+services:
+    database:
+        image: postgres:14
+        hostname: database
+        container_name: database
+        environment:
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=${DB_DATABASE}
+            - PGDATA=/var/lib/postgresql/data/pgdata
+            - PGTZ=${TIMEZONE}
+            - TZ=${TIMEZONE}
+        ports:
+            - "5432:5432"
+        restart: "no"
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+
+volumes:
+    pgdata:
