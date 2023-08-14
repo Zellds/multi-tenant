@@ -69,3 +69,7 @@ Exemplo:
 | 3   | 1       | 2         | Conteúdo do Post 3 |
 | 4   | 3       | 1         | Conteúdo do Post 4 |
 | ... | ...     | ...       | ...                |
+
+## Gif para uma breve demonstração
+
+![exemple](https://github.com/Zellds/multi-tenant/assets/106114776/e5d671c9-5de5-48c8-849c-6556147895cf)
