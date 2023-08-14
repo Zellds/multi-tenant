@@ -4,10 +4,14 @@
     </div>
 
     <ul class="mx-3 mt-5">
-        <h1 class="mb-2">~Lista de Postagens~</h1>
+        <p class="mb-2 text-2xl">~Lista de Postagens~</p>
         @foreach($posts as $post)
             <li>
-                <a href="{{ route('posts.edit', $post->id) }}">{{ $post->content }}</a>
+                <p class="font-bold">Postado por: {{ $post->user->name }}</p>
+                {{ "* Conteudo: {$post->content}" }}
+                <br>
+                <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn btn-primary">Editar Post</a>
+                <br><br>
             </li>
         @endforeach
     </ul>
